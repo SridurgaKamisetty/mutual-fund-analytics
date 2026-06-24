@@ -430,3 +430,35 @@ with open("C:/Users/user/mutual-fund-analytics/sql/queries.sql", "w") as f:
         f.write(f"-- {name}\n{query}\n\n")
 
 print("\nqueries.sql saved!")
+
+
+import os
+
+base = "C:/Users/user/mutual-fund-analytics/"
+
+checks = {
+    "10 clean CSVs (processed folder)": len([f for f in os.listdir(base + "data/processed") if f.endswith('.csv')]),
+    "bluestock_mf.db": os.path.exists(base + "bluestock_mf.db"),
+    "schema.sql": os.path.exists(base + "sql/schema.sql"),
+    "queries.sql": os.path.exists(base + "sql/queries.sql"),
+    "data_dictionary.md": os.path.exists(base + "reports/data_dictionary.md")
+}
+
+for item, status in checks.items():
+    print(f"{item}: {status}")
+
+    import os
+files = os.listdir("C:/Users/user/mutual-fund-analytics/data/processed")
+for f in files:
+    print(f)
+
+    import pandas as pd
+
+fund_master = pd.read_csv("C:/Users/user/mutual-fund-analytics/data/raw/01_fund_master.csv")
+fund_master = fund_master.drop_duplicates()
+
+fund_master.to_csv("C:/Users/user/mutual-fund-analytics/data/processed/01_fund_master_cleaned.csv", index=False)
+print("01_fund_master_cleaned.csv saved!")
+
+files = os.listdir("C:/Users/user/mutual-fund-analytics/data/processed")
+print(f"Total files: {len(files)}")
