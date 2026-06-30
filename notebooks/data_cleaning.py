@@ -452,13 +452,6 @@ files = os.listdir("C:/Users/user/mutual-fund-analytics/data/processed")
 for f in files:
     print(f)
 
-    import pandas as pd
-
-fund_master = pd.read_csv("C:/Users/user/mutual-fund-analytics/data/raw/01_fund_master.csv")
-fund_master = fund_master.drop_duplicates()
-
-fund_master.to_csv("C:/Users/user/mutual-fund-analytics/data/processed/01_fund_master_cleaned.csv", index=False)
-print("01_fund_master_cleaned.csv saved!")
-
-files = os.listdir("C:/Users/user/mutual-fund-analytics/data/processed")
-print(f"Total files: {len(files)}")
+import pandas as pd
+scorecard = pd.read_csv("C:/Users/user/mutual-fund-analytics/reports/fund_scorecard.csv")
+print(scorecard.columns.tolist())
